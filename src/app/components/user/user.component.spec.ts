@@ -40,14 +40,14 @@ describe('UserComponent', () => {
 
   it('should fetch user data based on route param', () => {
     expect(component.user).toBeTruthy();
-    expect(component.user?.name).toEqual('john doe');
+    expect(component.user?.name).toEqual('testuser');
   });
 
   it('should initialize chart data correctly when user data exists', () => {
     // Simulate user data
     const userData = {
       id: 1,
-      name: 'john doe',
+      name: 'testuser',
       workouts: [
         { type: 'Running', minutes: 30 },
         { type: 'Cycling', minutes: 45 },
