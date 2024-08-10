@@ -20,8 +20,8 @@ describe('AddWorkoutComponent', () => {
     router = TestBed.inject(Router);
 
     localStorage.setItem('userData', JSON.stringify([
-      { id: 1, name: 'John Doe', workouts: [{ type: 'Gym', minutes: 60 }] },
-      { id: 2, name: 'Jane Smith', workouts: [{ type: 'Running', minutes: 30 }] },
+      { id: 1, name: 'John', workouts: [{ type: 'Gym', minutes: 60 }] },
+      { id: 2, name: 'Jane', workouts: [{ type: 'Running', minutes: 30 }] },
     ]));
 
     fixture.detectChanges();
@@ -46,7 +46,7 @@ describe('AddWorkoutComponent', () => {
     const form = component.workoutForm;
     expect(form.valid).toBeFalsy();
 
-    form.controls['name'].setValue('John Doe');
+    form.controls['name'].setValue('John');
     form.controls['duration'].setValue('60');
     form.controls['type'].setValue('Gym');
     expect(form.valid).toBeTruthy();
@@ -56,14 +56,14 @@ describe('AddWorkoutComponent', () => {
     spyOn(router, 'navigate');
     const form = component.workoutForm;
 
-    form.controls['name'].setValue('Jane Smith');
+    form.controls['name'].setValue('Jane');
     form.controls['duration'].setValue('45');
     form.controls['type'].setValue('Cycling');
 
     component.onSubmit();
 
     const updatedUserData = JSON.parse(localStorage.getItem('userData')!);
-    const user = updatedUserData.find((u: any) => u.name === 'Jane Smith');
+    const user = updatedUserData.find((u: any) => u.name === 'Jane');
 
     expect(user).toBeTruthy();
     expect(user.workouts.length).toBe(2);

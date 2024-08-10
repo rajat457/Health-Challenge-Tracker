@@ -16,9 +16,11 @@ describe('ExploreComponent', () => {
     fixture = TestBed.createComponent(ExploreComponent);
     component = fixture.componentInstance;
 
+    // Adding 3 users to localStorage by default
     localStorage.setItem('userData', JSON.stringify([
       { id: 1, name: 'John Doe', workouts: [{ type: 'Gym', minutes: 60 }] },
       { id: 2, name: 'Jane Smith', workouts: [{ type: 'Running', minutes: 30 }] },
+      { id: 3, name: 'Alice Brown', workouts: [{ type: 'Swimming', minutes: 45 }] }  // Default entry added
     ]));
 
     fixture.detectChanges();
@@ -36,6 +38,7 @@ describe('ExploreComponent', () => {
     expect(component.userData).toEqual([
       { id: 1, name: 'John Doe', workouts: [{ type: 'Gym', minutes: 60 }] },
       { id: 2, name: 'Jane Smith', workouts: [{ type: 'Running', minutes: 30 }] },
+      { id: 3, name: 'Alice Brown', workouts: [{ type: 'Swimming', minutes: 45 }] }  // Assert the default entry
     ]);
   });
 
@@ -58,14 +61,15 @@ describe('ExploreComponent', () => {
     expect(component.filteredUserData()).toEqual([
       { id: 1, name: 'John Doe', workouts: [{ type: 'Gym', minutes: 60 }] },
       { id: 2, name: 'Jane Smith', workouts: [{ type: 'Running', minutes: 30 }] },
+      { id: 3, name: 'Alice Brown', workouts: [{ type: 'Swimming', minutes: 45 }] },  // Included in the "All" filter
     ]);
   });
 
   it('should calculate total pages correctly', () => {
     component.itemsPerPage = 1;
-    expect(component.totalPages).toBe(2);
+    expect(component.totalPages).toBe(3);
 
-    component.itemsPerPage = 2;
+    component.itemsPerPage = 3;
     expect(component.totalPages).toBe(1);
   });
 
@@ -79,6 +83,11 @@ describe('ExploreComponent', () => {
     component.currentPage = 2;
     expect(component.paginatedData).toEqual([
       { id: 2, name: 'Jane Smith', workouts: [{ type: 'Running', minutes: 30 }] },
+    ]);
+
+    component.currentPage = 3;
+    expect(component.paginatedData).toEqual([
+      { id: 3, name: 'Alice Brown', workouts: [{ type: 'Swimming', minutes: 45 }] },
     ]);
   });
 
