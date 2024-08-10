@@ -20,7 +20,7 @@ describe('UserComponent', () => {
           useValue: {
             snapshot: {
               paramMap: {
-                get: () => 'testuser' // Mocking route param
+                get: () => 'john doe' // Mocking route param
               }
             }
           }
@@ -40,14 +40,14 @@ describe('UserComponent', () => {
 
   it('should fetch user data based on route param', () => {
     expect(component.user).toBeTruthy();
-    expect(component.user?.name).toEqual('testuser');
+    expect(component.user?.name).toEqual('john doe');
   });
 
   it('should initialize chart data correctly when user data exists', () => {
     // Simulate user data
     const userData = {
       id: 1,
-      name: 'testuser',
+      name: 'john doe',
       workouts: [
         { type: 'Running', minutes: 30 },
         { type: 'Cycling', minutes: 45 },
