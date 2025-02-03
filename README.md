@@ -45,10 +45,10 @@ OPTIONAL FEATURE → WORKOUT PROGRESS USING CHARTS
 
 1. Clone the repository:
 
-   ```bash
+```bash
    git clone https://github.com/rajat457/Health-Challenge-Tracker
    cd Health-Challenge-Tracker
-   ```
+```
 
 2. Install dependencies
 
